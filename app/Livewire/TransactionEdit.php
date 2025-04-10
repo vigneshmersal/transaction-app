@@ -14,6 +14,8 @@ class TransactionEdit extends Component
     public TransactionForm $form;
     
     public function mount(Transaction $transaction) {
+        $this->authorize('update', $transaction);
+        
         $this->form->setTransaction($transaction);
     }
     

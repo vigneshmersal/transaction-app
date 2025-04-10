@@ -1,6 +1,6 @@
 <div class="m-auto w-full mb-4 text-black">
     <div class="mb-3 flex justify-between items-center">
-        @role('Preparer')
+        @can('create', App\Models\Transaction::class)
         <a
             href="{{ route('transactions.create') }}"
             class="text-blue-500 hover:text-blue-700"
@@ -8,7 +8,7 @@
         >
             Create Transactions
         </a>
-        @endrole
+        @endcan
     </div>
     @if (session('status'))
         <div class="text-center bg-green-700 text-gray-200">
@@ -38,7 +38,7 @@
                             href="/transactions/{{$transaction->id}}"
                             wire:navigate
                         >View</a>
-                        @role('Approver')
+                        @can('update', $transaction)
                             <a class="p-2"
                                 href="/transactions/{{$transaction->id}}/edit"
                                 wire:navigate
@@ -49,7 +49,7 @@
                             >
                                 Delete
                             </button>
-                        @endrole
+                        @endcan
                     </td>
                 </tr>
             @endforeach

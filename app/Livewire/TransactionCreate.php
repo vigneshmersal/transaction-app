@@ -12,6 +12,10 @@ class TransactionCreate extends Component
     use WithFileUploads;
     
     public TransactionForm $form;
+    
+    public function mount() {
+        $this->authorize('create', Transaction::class);
+    }
 
     public function submit() {
         $this->form->store();
